@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>制作移动U盘系统 | Koen&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="U盘?我没有U盘啊,内存卡可不可以,答案是可以的.由于Ubuntu能用wubi方法安装,所以本文以Linuxmint17 为例.
+先把U盘格式化为FAT32(怎么知道我的是不是FAT32?计算机-找到磁盘-右键-属性.很多默认都是32的,有的老爷卡才是FAT16,不会有NTFS的吧,真有?格式化吧)。然后下载一个制作Linux的U盘启动盘的小工具 Universal USB Installer 戳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="制作移动U盘系统">
+<meta property="og:url" content="http://koenux.com/2014/12/12/制作移动U盘系统/index.html">
+<meta property="og:site_name" content="Koen's blog">
+<meta property="og:description" content="U盘?我没有U盘啊,内存卡可不可以,答案是可以的.由于Ubuntu能用wubi方法安装,所以本文以Linuxmint17 为例.
+先把U盘格式化为FAT32(怎么知道我的是不是FAT32?计算机-找到磁盘-右键-属性.很多默认都是32的,有的老爷卡才是FAT16,不会有NTFS的吧,真有?格式化吧)。然后下载一个制作Linux的U盘启动盘的小工具 Universal USB Installer 戳">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/005yyi5Jjw1en6tbiia1qj305z0c63z7.jpg">
+<meta property="og:image" content="http://tc.acerw.com/di/XIHD/BaiduShurufa_2014-12-11_23-44-27.jpg">
+<meta property="og:image" content="http://tc.acerw.com/di/J97J/BaiduShurufa_2014-12-11_23-45-9.jpg">
+<meta property="og:image" content="http://tc.acerw.com/di/TQ15/BaiduShurufa_2014-12-11_23-45-49.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="制作移动U盘系统">
+<meta name="twitter:description" content="U盘?我没有U盘啊,内存卡可不可以,答案是可以的.由于Ubuntu能用wubi方法安装,所以本文以Linuxmint17 为例.
+先把U盘格式化为FAT32(怎么知道我的是不是FAT32?计算机-找到磁盘-右键-属性.很多默认都是32的,有的老爷卡才是FAT16,不会有NTFS的吧,真有?格式化吧)。然后下载一个制作Linux的U盘启动盘的小工具 Universal USB Installer 戳">
+  
+    <link rel="alternative" href="/atom.xml" title="Koen&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Koen Lau</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">常来www.koenux.com</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C语言/" style="font-size: NaNpx;">C语言</a><a href="/tags/US/" style="font-size: NaNpx;">US</a><a href="/tags/U盘系统/" style="font-size: NaNpx;">U盘系统</a><a href="/tags/blog/" style="font-size: NaNpx;">blog</a><a href="/tags/hexo/" style="font-size: NaNpx;">hexo</a><a href="/tags/广从/" style="font-size: NaNpx;">广从</a><a href="/tags/搞笑/" style="font-size: NaNpx;">搞笑</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Koen Lau</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Koen Lau</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">常来www.koenux.com</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-制作移动U盘系统" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/12/制作移动U盘系统/" class="article-date">
+  	<time datetime="2014-12-12T03:20:10.000Z" itemprop="datePublished">2014-12-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      制作移动U盘系统
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/U盘系统/">U盘系统</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/教程/">教程</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>U盘?我没有U盘啊,内存卡可不可以,答案是可以的.<br>由于Ubuntu能用wubi方法安装,所以本文以Linuxmint17 为例.</p>
+<p>先把U盘格式化为<code>FAT32</code>(怎么知道我的是不是FAT32?计算机-找到磁盘-右键-属性.很多默认都是32的,有的老爷卡才是FAT16,不会有NTFS的吧,真有?格式化吧)。然后下载一个制作Linux的U盘启动盘的小工具 <code>Universal USB Installer</code> <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/" target="_blank" rel="external">戳我下载哦</a>,什么下载不了?我是不会教你<code>番羽</code> <code>土啬</code>下载的,根据国家法律,部分内容没有显示……..</p>
+<p>这是个绿色版的小软件，无需安装，双击运行即可。制作U盘启动盘的过程也很简单，跟着一步步往前即可。<br>1.第一个框，选择Linuxmint17<br><img src="http://ww4.sinaimg.cn/large/005yyi5Jjw1en6tbiia1qj305z0c63z7.jpg" alt=""></p>
+<p>2.第二个框，点Browse，选择已下载的ISO镜像；<code>Browse to your linuxmint*.iso  --&gt;</code></p>
+<p>3.第三个框，选择你的U盘。A.B.C.D.E.F.G具体那是个盘,win+E打开你的电脑就知道了,系统也会默认检测的.</p>
+<p>4.其他不用管了,点Create.</p>
+<p><img src="http://tc.acerw.com/di/XIHD/BaiduShurufa_2014-12-11_23-44-27.jpg" alt=""><br>然后<br><img src="http://tc.acerw.com/di/J97J/BaiduShurufa_2014-12-11_23-45-9.jpg" alt=""><br>再然后<br><img src="http://tc.acerw.com/di/TQ15/BaiduShurufa_2014-12-11_23-45-49.jpg" alt=""></p>
+<hr>
+<p>到这里就完成全部安装了,把你的U盘查到别的电脑(自己电脑也行,重启U盘启动就可以了)去试试吧,开机按U盘启动就可以进入系统了.</p>
+<p>是不是很讨厌那些写教程的人啊,总是在自己不懂的步骤就不配图,其实我们也是有苦衷的(谁没啊,我还有委屈呢@_@).<br>第一:我们的 空间有限,不宜放大量的图.<br>    A:傻蛋,你不会用图床啊….<br>第二:图床在弄外链的时候很费时<br>    A:#!%&amp;^*</p>
+<p>因为我们每个人的水平都不一样,有的人懂这个有的人懂那个,闻道有先后,术业有专攻.不会炒菜的裁缝不是好司机.我不知道你只会<code>右键-打开</code>,而不懂<code>双击</code>.  </p>
+<hr>
+<p> 我会做得更好.谢谢支持.<code>自由</code> <code>共享</code>是我的信条.转载请注明原出处<code>cmkd.net</code>.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/22/guangcongxian/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          广从线路
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/10/冬天/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">北方与南方的冬天...</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="制作移动U盘系统" data-title="制作移动U盘系统" data-url="http://koenux.com/2014/12/12/制作移动U盘系统/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Koen Lau
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
