@@ -199,80 +199,11 @@
         <h2 id="前言:">前言:</h2><p>Hexo的搭建教程已经不是第一篇了,我在这几天的折腾中大概已经看了不少于20篇,为什么还要重新写一篇教程出来呢?因为她们写的在我看来都不够完美(详细),其实只因为我是小白而已,所以我在这里再总结一遍我在搭建Hexo中走过的路,面向对象为只会用鼠标的孩子,希望这部分人看了这篇教程后也能用上Hexo.</p>
 <ul>
 <li>注意:此教程在windows上实测,Mac.类UNIX.Linux.用户请慎重参考.<br>好了,我的Hexo装big之路现在开始…</li>
-<li>安装Node<br>到 <a href="http://nodejs.org" target="_blank" rel="external">Node.js 官网</a>下载相应平台(这里应该是windows平台)的 最新版本 ，一路安装即可。进到官网  你会看到install字样的按钮.点击下载安装就行了.<ul>
+<li>安装Node<br>到 <a href="http://nodejs.org">Node.js 官网</a>下载相应平台(这里应该是windows平台)的 最新版本 ，一路安装即可。进到官网  你会看到install字样的按钮.点击下载安装就行了.<ul>
 <li>安装Git</li>
 <li>安装<code>sublime</code>(这个不是一定要安装的,只是用来打开.md等文件的工具,如果你有给好的工具请忽略3)</li>
 <li>登陆<code>GitHub</code>账号</li>
-<li>配置SSH keys<br>我们为什么能使本地git项目与远端的github链接起来，就是因为SSH keys的存在。下面我们配置SSH keys。<br>首先我们需要检查你电脑上现有的ssh key：</li>
-</ul>
-</li>
-</ul>
-<hr>
-<pre><code>$ cd ~/<span class="class">.ssh</span> 检查本机的ssh密钥，（代码在git上运行）
-</code></pre><hr>
-<p>  如果提示：No such file or directory 说明你是第一次使用git。</p>
-<h2 id="生成密钥：">  生成密钥：</h2><pre><code>ssh-keygen -t rsa -<span class="keyword">C</span> <span class="string">"123@qq.com"</span>
-//注意代码中的<span class="keyword">C</span>要大写
-</code></pre><hr>
-<p>Generating public/private rsa key pair.<br>  Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;这里什么也不用填，回车就好&gt;<br>  然后系统会要你输入密码：<br>  Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;<br>  Enter same passphrase again:&lt;再次输入加密串&gt;<br>  在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。</p>
-<p>  注意：输入密码的时候没有*字样的，你直接输入就可以了。<br>  添加<code>SSH-Key</code>(先在你<code>github</code>主页右上角找到<code>setting</code>点进去,再在左边找<code>ssh-key</code>)<br>  <code>.ssh</code> 目录下生成两个文件 <code>id_rsa</code> 和 <code>id_rsa.pub</code><br>  用文本编辑器(这里可用<code>sublime</code>)打开 <code>id_rsa.pub</code> 文件，拷贝其中的内容，将其添加到 <code>Add SSH Key</code>(<code>title</code>那栏可不填,拷内容进key哪里就好)</p>
-<h2 id="最后可以验证一下：">  最后可以验证一下：</h2><pre><code><span class="title">ssh</span> -T git<span class="variable">@github</span>.com
-</code></pre><hr>
-<p>  屏幕显示：<br>  The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.<br>  RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br>  Are you sure you want to continue connecting (yes/no)?</p>
-<p>  输入yes 回车<br>  Hi *! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-<ul>
-<li>设置用户信息<br>首先设置你的用户名密码：</li>
-</ul>
-<hr>
-<pre><code> git config --global user<span class="class">.email</span> <span class="string">"123@qq.com"</span>
- git config --global user<span class="class">.name</span> <span class="string">"123"</span>
-<span class="comment">//这两行代码在git上打</span>
-</code></pre><hr>
-<h2 id="*_执行如下命令安装hexo：">* 执行如下命令安装hexo：</h2><pre><code>npm <span class="keyword">install</span> -g hexo
-</code></pre><hr>
-<p>这里有warn可以不用管。<br>C:\Users\Administrator&gt;npm install -g hexo<br>npm WARN optional dep failed, continuing fsevents@0.3.5<br>npm WARN optional dep failed, continuing fsevents@0.3.5<br>-<br>初始化</p>
-<h2 id="然后，执行init命令初始化hexo到你指定的目录（如D://hexo）：">然后，执行init命令初始化<code>hexo</code>到你指定的目录（如D://hexo）：</h2><pre><code>hexo <span class="keyword">init</span>  <span class="comment">//在D://hexo下打开git</span>
-</code></pre><hr>
-<p>生成静态页面</p>
-<h2 id="执行如下命令，生成静态页面至_hexo\public\_目录。">执行如下命令，生成静态页面至 <code>hexo\public\</code> 目录。</h2><pre><code>hexo <span class="keyword">ge</span><span class="label">nerate</span>
-</code></pre><hr>
-<p>本地启动</p>
-<h2 id="执行如下命令，启动本地服务，进行文章预览调试。">执行如下命令，启动本地服务，进行文章预览调试。</h2><pre><code>hexo <span class="keyword">server</span>
-</code></pre><hr>
-<h2 id="浏览器输入_http://localhost:4000就可以看到效果。">浏览器输入 <code>http://localhost:4000</code>就可以看到效果。</h2><p>$ hexo s<br>INFO  Hexo is running at <a href="http://0.0.0.0:4000/" target="_blank" rel="external">http://0.0.0.0:4000/</a>. Press Ctrl+C to stop.<br>INFO</p>
-<p>hexo s<br>      Hexo is running at <a href="http://0.0.0.0:4000/" target="_blank" rel="external">http://0.0.0.0:4000/</a>. Press Ctrl+C to stop.<br>WARN  No layout: index.html<br>WARN  No layout: index.html</p>
-<h2 id="WARN_No_layout:_index-html出现这个问题会删除index-html的内容，重开git又没事了">WARN  No layout: index.html出现这个问题会删除index.html的内容，重开git又没事了</h2><p>*主题<br>修改主题后没有显示修改的结果，建议执行如下命令，再看看，可以解决很多问题。<br>$ hexo clean<br>$ hexo g<br>$ hexo s<br>复制主题：</p>
-<p>$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia<br>*配置</p>
-<p>修改hexo根目录下的 _config.yml ： theme: yilia<br>注意：Hexo有两个config.yml文件，一个在根目录，一个在theme下，此时修改的是在根目录下的。<br>一个是对整站的配置H:\hexo_config.yml，另一个是对主题的配置H:\hexo\themes\light_config.yml</p>
-<h2 id="*更新主题">*更新主题</h2><p>$ cd themes/yilia</p>
-<h2 id="$_git_pull">$ git pull</h2><hr>
-<p>$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> the<br>Cloning into ‘themes/yilia’…<br>remote: Counting objects: 660, done.<br>Receiving objects: 100% (660/660), 7.12 MiB | 79.00 KiB/s, don<br>Resolving deltas:   2% (7emote: Total 660 (delta 0), reused 0<br>used 660<br>Resolving deltas: 100% (327/327), done.<br>Checking connectivity… done.</p>
-<p>Administrator@USER-20418B /d/hexo<br>$ cd themes/yilia</p>
-<p>Administrator@USER-204GB /d/hexo/themes/yilia (master)<br>$ git pull</p>
-<h2 id="Already_up-to-date-">Already up-to-date.</h2><p>部署到Github前需要配置_config.yml文件。<br>deploy:<br>type: github（3.0后这里要改成git）<br>repository: git@github.com:A-limon/alimon.github.com.git<br>branch: master</p>
-<p>直接作用组合命令</p>
-<h2 id="$_hexo_d_-g">$ hexo d -g</h2><pre><code><span class="regexp">/d/</span>hexo
-</code></pre><p> hexo deploy<br>     Deployer not found: github</p>
-<pre><code><span class="regexp">/d/</span>hexo
-</code></pre><p> hexo deploy<br>     Deployer not found: git</p>
-<hr>
-<p>出现上面的错误请执行npm install hexo-deployer-git —save</p>
-<h2 id="然后hexo_d_-g">然后hexo d -g</h2><p>$ npm install hexo-deployer-git —save<br>npm WARN optional dep failed, continuing fsevents@0.<br>hexo-deployer-git@0.0.4 node_modules\hexo-deployer-g<br>├── chalk@0.5.1 (ansi-styles@1.1.0, escape-string<br>r@0.2.0, has-ansi@0.1.0, strip-ansi@0.3.0)<br>├── moment@2.10.2<br>├── hexo-util@0.1.6 (ent@2.2.0, bluebird@2.9.25,<br>├── hexo-fs@0.1.3 (escape-string-regexp@1.0.3, gr<br>9.25, chokidar@0.12.6)</p>
-<h2 id="└──_swig@1-4-2_(optimist@0-6-1,_uglify-js@2-4-20)">└── swig@1.4.2 (optimist@0.6.1, uglify-js@2.4.20)</h2><p>$ hexo d<br>INFO  Deploying: git<br>INFO  Setting up Git deployment…<br>Initialized empty Git repository in d:/hexo/.deploy_git/.git/<br>[master (root-commit) 071fcc3] First commit<br> 1 file changed, 0 insertions(+), 0 deletions(-)<br> create mode 100644 placeholder<br>INFO  Clearing .deploy folder…</p>
-<p>The file will have its original line endings in your working directory.<br>warning: LF will be replaced by CRLF in index.html.<br>The file will have its original line endings in your working directory.<br>warning: LF will be replaced by CRLF in js/script.js.<br>The file will have its original line endings in your working directory.<br>Username for ‘<a href="https://github.com" target="_blank" rel="external">https://github.com</a>‘: kyun768<br>Password for ‘<a href="https://kyun768@github.com" target="_blank" rel="external">https://kyun768@github.com</a>‘:<br>Branch master set up to track remote branch master from <a href="http://github.com" target="_blank" rel="external">http://github.com</a><br>8/kyun768.github.io.git.<br>To <a href="http://github.com/kyun768/kyun768.github.io.git" target="_blank" rel="external">http://github.com/kyun768/kyun768.github.io.git</a></p>
-<ul>
-<li>b58acd9…84605f5 master -&gt; master (forced update)<br>INFO  Deploy done: git<br>写文章</li>
-</ul>
-<h2 id="执行new命令，生成指定名称的文章至hexo\source\_posts\postName-md。">执行new命令，生成指定名称的文章至<code>hexo\source\_posts\postName.md</code>。</h2><pre><code>hexo <span class="keyword">new</span>  <span class="string">"postName"</span> <span class="comment">//新建文章,postname就是你的文件名</span>
-</code></pre><hr>
-<p>自定义页面</p>
-<h2 id="执行new_page命令">执行new page命令</h2><pre><code>hexo <span class="keyword">new</span> page <span class="string">"about"</span>
-</code></pre><hr>
-<p>在 hexo\source\ 下会生成 about 目录，里面有个index.md，直接编辑就可以了，然后在主题的 _config.yml 中将其配置显示出来。 </p>
-<p>上述步骤，也可以手工生成，在 hexo\source\ 下手工新建 about 和 index.md 也是完全等价的。</p>
-<p>因为markdown对table的支持不好，我是在about中直接建立index.html，里面书写页面内容，hexo会帮你加上头和尾。<br>设置<code>About</code>问题:在根目录的<code>source</code>下创建<code>About/index.md</code>,还要在主题下的<code>config</code>文件中<code>menu</code>下<code>About</code>中补充<code>: /About</code>  这样就可以了.<br>Markdown学习:<a href="http://www.zhihu.com/question/20409634" target="_blank" rel="external">http://www.zhihu.com/question/20409634</a><br>本文参考：</p>
-<p><a href="http://www.itnose.net/detail/6231502.html" target="_blank" rel="external">http://www.itnose.net/detail/6231502.html</a><br><a href="https://coderq.com/t/hexoxi-lie-jiao-cheng-san-hexobo-ke-de-pei-zhi-shi-yong/72" target="_blank" rel="external">https://coderq.com/t/hexoxi-lie-jiao-cheng-san-hexobo-ke-de-pei-zhi-shi-yong/72</a><br>cnfeat的:<br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br>poem_of_sunshine的专栏csdn:<br><a href="http://blog.csdn.net/poem_of_sunshine/article/details/29369785" target="_blank" rel="external">http://blog.csdn.net/poem_of_sunshine/article/details/29369785</a><br>Ruikye博客的:Hexo 配置文件 _config.yml<br><a href="http://ruikye.com/2014/08/30/Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%C2%B7-%E8%BF%9B%E9%98%B6%E7%AF%87/" target="_blank" rel="external">http://ruikye.com/2014/08/30/Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%C2%B7-%E8%BF%9B%E9%98%B6%E7%AF%87/</a><br><a href="http://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="external">http://wsgzao.github.io/post/hexo-guide/</a><br>推酷 : <a href="http://www.tuicool.com/articles/AfQnQjy" target="_blank" rel="external">http://www.tuicool.com/articles/AfQnQjy</a></p>
-
+<li>配置SSH keys
       
     </div>
     
@@ -284,6 +215,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/05/01/hexo/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -384,26 +319,7 @@
         <p>近来，看到有好友转发各种手机短信诈骗的例子，想了想还是有必要写一点东西，算互相学习吧。</p>
 <p>先看个笑话轻松下：</p>
 <p>刚刚又看到新闻说储户存款消失，从几百万到几个亿不等，储户索赔无望，对此我深感恐惧，赶紧骑车到银行 看，卡里的50块钱还在，吓死我了。以后再也不看新闻了，心好累。走出银行门一看，妈的，自行车没了！</p>
-<hr>
-<p>下面进入正题</p>
-<p>先同大家科普一点知识。<br>1.什么是域名？<br>域名（英语：Domain Name），又称域名、域名，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。DNS（网域名称系统，Domain Name System，有时也简称为域名）是因特网的一项核心服务，它作为可以将域名和IP地址相互映射的一个分布式数据库，能够使人更方便的访问互联网，而不用去记住能够被机器直接读取的IP地址数串。</p>
-<p>例如，www.wikipedia.org作为一个域名，便和IP地址208.80.152.2相对应。DNS就像是一个自动的电话号码簿，我们可以直接拨打wikipedia的名字来代替电话号码（IP地址）。DNS在我们直接调用网站的名字以后就会将像www.wikipedia.org一样便于人类使用的名字转化成像208.80.152.2一样便于机器识别的IP地址。</p>
-<p>域名、创建时间、使用范围说明<br> .com - 供商业机构使用，但无限制最常用，被大部分人熟悉和使用<br> .net - 1985年1月，原供网络服务供应商使用，现无限制<br> .org - 1985年1月，原供不属于其他通用顶级域类的组织使用，现无限制<br> .edu / .gov / .mil - 1985年1月，供美国教育机构／美国政府机关／美国军事机构。因历史遗留问题一般只在美国专用</p>
-<p>1.伪装运行商（移动，联通，电信）诈骗</p>
-<p><img src="http://kyun.qiniudn.com/搜狗截图20150205222645.png" alt=""></p>
-<p>这样的短信，看一眼就知道是诈骗短信。因为有点域名知识的就会知道移动的网址是10086.cn，前面有www的代表PC端，WAP的代表移动端，但现在已经不分了，因为出现了云适配等各种技术，不管你手机还是电脑它会智能适配。如本站域名cmkd.net<br>看各种不知shmemegui的域名<br><img src="http://kyun.qiniudn.com/搜狗截图20150205223151.png" alt=""></p>
-<p><img src="http://kyun.qiniudn.com/搜狗截图20150205223222.png" alt=""></p>
-<p><img src="http://kyun.qiniudn.com/搜狗截图20150205223342.png" alt=""></p>
-<hr>
-<p>点那个钓鱼链接进去后你会发现和正版的10086很像，当然啦！毕竟人家也是在蓝翔学过PS才出来的。这里你可以看到有<em>掌上营业厅</em>字样的图片，文字下面那个就是真的10086网址了。记住啦！有人会问，他的确是10086发来的信息啊，我想说哥这点技术都没有怎么出来行走江湖（运用了伪基站技术，想深入学习自行Google）。其实这里还有一个问题，下面分析。请继续看下去——-<br><img src="http://kyun.qiniudn.com/搜狗截图20150205223307.png" alt=""><br>积分问题，能积累4W+积分的应该也很勤劳打电话才做得到了。你看过商场习消费积分能送现金的吗？同理移动也是一个超级商场，它会兑现成各种小礼品或者充值卡消费你的积分，反正最后钱都是流回它那里的。想套现？—-要不先睡个觉，做个梦。。。。。<br>刚才留下的悬念来了，就是我们现在基本不能简单地用手机登陆得到10086官网，为什么呢？因为它要求CMWAP方式登陆，但实际上我们基本用net方式上网，不切换根本不能登陆。不信你可以试试<a href="http://wap.10086.cn。细心的人可能会看到下面的图片的域名为wap.hb.10086.cn,你刚才不是说移动手机的域名是wap.10086.cn吗？多了hb是不是钓鱼网站，问题提得好，这种叫做三级域名，由于我国每个省都要使用一个三级域名，所以一般采用拼音的首字母。例如我们广东的http://gd.10086.cn" target="_blank" rel="external">http://wap.10086.cn。细心的人可能会看到下面的图片的域名为wap.hb.10086.cn,你刚才不是说移动手机的域名是wap.10086.cn吗？多了hb是不是钓鱼网站，问题提得好，这种叫做三级域名，由于我国每个省都要使用一个三级域名，所以一般采用拼音的首字母。例如我们广东的http://gd.10086.cn</a> 。但重点是它只会在前后加如（<a href="http://gd.10086.cn" target="_blank" rel="external">http://gd.10086.cn</a> &amp; <a href="http://www.10086.cn/gd/），而绝对不是在中间加如（gd10086.cn" target="_blank" rel="external">http://www.10086.cn/gd/），而绝对不是在中间加如（gd10086.cn</a> &amp; 10086gd.cn）因为在中间加就是一个新二级域名了，好的域名（针对公司文化）是很贵的，例如<br>   xiaomi.com——&gt;mi.com<br>   360.cn——-&gt;360.com<br>    这些公司在更改域名时花费了一笔不小的费用。所以大公司企业不会随意换域名，如果换也会广而告之如<br>    360buy.com——-&gt;jd.com<br><img src="http://kyun.qiniudn.com/搜狗截图20150205222952.png" alt=""><br><img src="http://kyun.qiniudn.com/Screenshot_2015-02-05-22-33-41-86.png" alt=""></p>
-<hr>
-<p>银行发来的（都是域名问题）<br><img src="http://kyun.qiniudn.com/搜狗截图20150205223111.png" alt=""><br>如果你想知道你所用的银行卡对应的那家银行的网站自行Google学习。这里只举一个例子<br>中国工商银行股份有限公司(Industrial and Commercial Bank of China Limited, ICBC)。几年蝉联“中国最赚钱公司”。域名：“爱存不存”哥就是那么任性(<a href="http://www.icbc.com.cn" target="_blank" rel="external">http://www.icbc.com.cn</a> ).<br>还有各种爱死不死的，请自行学习理解。</p>
-<hr>
-<p>那是不是10086.cn的就可以随便打开呢？亲，no zuo no die啊，没事别乱点就对了。看下图，有经验的一看就知道是huawei商城的网站，初级判断没有问题。但因为手机有支付宝等支付软件，和你手机绑定各种银行卡，还是不要用手机当这个肖柏苏，我们可以把他转发到电脑上，在细细研究，如果你真的认为又有人任性给你送钱来了。<br><img src="http://kyun.qiniudn.com/67be458fjw1eouutbauaqj20c808mmxw.jpg" alt=""><br><a href="http://news.cntv.cn/2015/02/01/VIDE1422795695915620.shtml" target="_blank" rel="external">下面我们看一段新闻视频</a></p>
-<p>最后说一句：所有的吃亏都源于我们的贪念，明知道Rolex手表20蚊是买不到，但你仍然是买了，能埋怨淘宝么。1000元是买不到Audi的，100元是买不到dior的，10元买包Oreo还是有的。</p>
-<hr>
-<p>感谢 政商阅读 微信号：zsyd86——部分图片来源<br>CNTV.cn<br>所有资源来自互联网，如果有侵犯你的合法权益，请联系站长删除。联系方式见<a href="http://cmkd.net/about/" target="_blank" rel="external">关于</a><br>文章原创，欢迎转载，请注明原处。谢谢合作！</p>
-
+<h2 id="<!-_more_->">
       
     </div>
     
@@ -411,6 +327,10 @@
       
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/02/05/duanxinzhapian/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -451,101 +371,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>站长温馨提醒：请支持正版Windows系统<a href="http://www.microsoftstore.com.cn/类别/Windows/Windows-8-1/p/WIN81-00000" target="_blank" rel="external">http://www.microsoftstore.com.cn/类别/Windows/Windows-8-1/p/WIN81-00000</a></p>
-<h2 id="64位win7系统镜像，集成驱动版，请戳这里">64位win7系统镜像，集成驱动版，请戳<a href="http://pan.baidu.com/s/1CTFDs" target="_blank" rel="external">这里</a></h2><hr>
-<p>【OEM智能激活/64位IE9旗舰版】纳米技术Windows7_SP1旗舰版V5.3纯净+软件选择版（GHOST+安装版）               纳米电脑技术群:181958380</p>
-<p><strong><em>*</em></strong>本版为GHOST版<strong><em>**</em></strong></p>
-<h2 id="◆_警告(免责条款说明)：">◆ 警告(免责条款说明)：</h2><p><em>本作品仅作技术交流之用，所有资料来源于互联网，只可用于个人研究试验，切勿用于商业用途，请测试后自行销毁。 
-</em>Windows系统及软件版权属各自产权人所有。超出个人研究范围所引发的版权及责任等问题的争执，<br>*您必须认可上述免责条款，方可使用本作品。如有异议，强烈建议不要使用。</p>
-<h2 id="◆_版本更新要点（相对上一版）：">◆ 版本更新要点（相对上一版）：</h2><ul>
-<li>更新-系统全新制作，集成IE9浏览器简体中文正式版！</li>
-<li>更新-系统安全关键补丁至2013年06月25日</li>
-<li>更新-VB、VC++ 2005/2008/2010/2012运行库支持文件，确保绿色软件均能正常运行。</li>
-<li>更新-万能驱动助理（原：e驱动）v5.32（64位 Win7专版）[2013-06]</li>
-<li>更新-Adobe Flash Player 11.7.700.224 正式版</li>
-<li>更新-Microsoft Silverlight 5.1.20125.0 正式版</li>
-<li>更新-更新DOS版和WINDOWS版本的DISKGEN 4.3.0.1</li>
-<li>增加-30多款主题+多张精美壁纸 【精美主题和壁纸 请看随机的图片介绍】</li>
-<li>更新-修复部分一体机扫描仪和打印机驱动问题,特别增加网银补丁,老版网银可以正常使用</li>
-<li>更新-部分常用软件至最新稳定版本</li>
-<li>更新-双PE启动：最新笔记本或台式机启动请选择WIN7-PE；2012年前的电脑启动推荐使用 XP-PE!</li>
-<li>光盘WinPE增加数十种维护工具</li>
-<li>更新-Win7 OEM资料包,激活工具，并增加OEM智能识别、激活</li>
-<li>修正容易让IE崩溃的过度优化</li>
-<li>增加磁盘控制器 SkyIAR v2.55 稳定版，支持开启AHCI模式安装。(注：如果开启AHCI模式安装结果进系统蓝屏请改IDE模式安装)</li>
-<li>更多细节优化，保持系统启动迅速，运行稳定</li>
-<li>├─添加常用快捷键<br>├─ 黑屏时用键盘降低分辨率(Ctrl+Alt+F7)<br>├─ 快速关机(Ctrl+Alt+End)<br>├─ 快速重启(Ctrl+Alt+Home)<br>└─ 光驱弹出或关闭(Ctrl+Alt+↓)</li>
-</ul>
-<h1 id="◆概述：">◆概述：</h1><p>本系统采用 MSDN 发行的Windows7_SP1_ULTIMATE_X64正式原版镜像做母盘，适度精简优化，保证系统快速、稳定、安全。可通过微软验证，可在线更新，请放心使用<br>WIN7本身已经可以很好的支持新硬件安装，此版还额外集成了天空的SATA/RAID/SCSI驱动，稳定性、兼容性超强，支持更多的硬件，恢复速度更胜一畴！电源判断更准确,支持恢复系统到各种台式机、笔记本电脑、工作站、以及服务器。智能判断，自动卸载多余设备驱动。</p>
-<h2 id="本系统适用于笔记本、品牌机，也支持组装兼容机，安装后自动激活可供品牌机专卖店及普通用户安装使用，系统安装简便快速，10分钟内即可安装完成">本系统适用于笔记本、品牌机，也支持组装兼容机，安装后自动激活可供品牌机专卖店及普通用户安装使用，系统安装简便快速，10分钟内即可安装完成</h2><ul>
-<li>品牌智能识别，装机更显专业：自动调用SLIC2.1证书进行激活，自动部署相应品牌机的欢迎桌面、壁纸、oem信息及logo图标等，主板BIOS中不含证书的品牌机及非品牌机，会自动调用内置的工具实现激活(需重启)。</li>
-<li>整合了截至2013年06月25日前所有关键漏洞补丁</li>
-<li>通过正版验证，支持自动更新、支持Windows update在线更新</li>
-<li>可以在控制面板里完美开启和关闭程序和功能而不会出错,可以正常安装或卸载系统语言,屏蔽恶意软件删除工具</li>
-<li>集成自由天空e驱动 v5.32 正式版[2013.06]，基本可完美识别绝大部分电脑的硬件设备</li>
-<li>双PE启动：最新笔记本或台式机启动请选择WIN7-PE；2012年前的电脑启动推荐使用 XP-PE!</li>
-<li>在部署阶段采用U其免疫措施，有效防止电脑店，老毛桃等U盘启动的恶意捆绑。</li>
-<li>系统采用ES3.1正式版+SkyIAR v2.55 稳定版封装，支持最新的电脑安装。</li>
-<li>集成磁盘控制器 SkyIAR v2.55 稳定版，支持开启AHCI模式安装。(注：如果开启AHCI模式安装结果进系统蓝屏请改IDE模式安装)</li>
-<li>系统安装完成后自动激活，如果发现未激活的情况，请从运行桌面提供的WIN7激活工具手动激活。</li>
-<li>集成最新VB、VC++ 2005/2008/2010运行库支持文件，确保绿色软件均能正常运行。</li>
-<li>集成 DirectX 9.0c 官方版运行库，更好的支持3D游戏。</li>
-<li>集成 Adobe Flash Player 11.7.700.224 正式版，方便观看在线视频。</li>
-<li>集成 Microsoft Silverlight 5.1.20125.0 正式版，方便观看在线视频。</li>
-<li>主题已破解，可直接使用第三方系统主题资源</li>
-<li>系统自动开启Aero特效，让Win7更炫</li>
-<li>右键添加“管理员取得所有权”命令，操作使用更加方便</li>
-<li>修复了声卡安装不了的问题</li>
-<li>修正了原版windows 7小工具不能正确显示天气问题</li>
-<li>增加华文行楷、华文新魏、隶书等字体</li>
-<li>C盘无卷标</li>
-<li>特别保留平板电脑组件</li>
-<li>系统无任何病毒、木马、恶意插件</li>
-<li>更新上一版本用户反映的小问题等，如出现问题，请及时反馈。</li>
-</ul>
-<h1 id="◆系统忧化设置：">◆系统忧化设置： </h1><p>系统注重实用性，作了一些适当的优化，更符合用户的使用习惯，也着重系统安全性设置。 </p>
-<ul>
-<li>将“运行”命令添加到开始程序菜单</li>
-<li>关闭错误报告</li>
-<li>关闭UAC、关闭休眠</li>
-<li>关闭屏保</li>
-<li>关闭防火墙，自动更新</li>
-<li>关闭可移动设备自动播放</li>
-<li>加快开机速度 </li>
-<li>启动预读和程序预读可以减少启动时间 </li>
-<li>加快局域网访问速度 </li>
-<li>加快关机速度 </li>
-<li>加快程序运行速度 </li>
-<li>加速打开我的电脑和Explorer </li>
-<li>关闭计划任务 </li>
-<li>禁止默认共享 </li>
-<li>禁止远程修改注册表 </li>
-<li>关闭硬盘各分区的默认共享 </li>
-<li>关闭管理默认共享 </li>
-<li>共享访问禁止空密码登陆 </li>
-<li>去掉win7右键不常用菜单</li>
-<li>删除“ - 快捷方式”后缀</li>
-<li>去除新建快捷方式前面的“新建快捷方式”字串</li>
-<li>为右键菜单中加上记事本打开项 </li>
-<li>为右键加上“管理员取得所有权”菜单</li>
-<li>禁用追踪损坏的快捷链接</li>
-<li>在桌面显示IE图标</li>
-<li>破解TCP/IP半开连接数限制</li>
-<li>IE属性“连接”设置为“从不进行拨号连接”</li>
-<li>IE设置在新选项卡打开链接，跳过IE9首次运行自定义设置</li>
-<li>安装完成后使用administrator账户直接登录系统，无需手动设置账号</li>
-<li>其他不再一一列出…</li>
-</ul>
-<p><strong>*</strong>集成软件<strong>*</strong></p>
-<h1 id="软件介绍：纳米技术Windows7_SP1旗舰版V5-3纯净+软件选择版_软件如下：">软件介绍：纳米技术Windows7_SP1旗舰版V5.3纯净+软件选择版 软件如下： </h1><p>软件安装管理器可选安装软件列表如下：<br>温馨提醒：系统软件包支持全自动安装，因安装脚本用AU3编写，可能会被个别杀软误报，请朋友们明辨，如不放心，可在系统安装好后，删除软件包。<br>软件管理器安装([√]为默认安装,[  ]为自选安装)，安装过程中如无必要，请不要随意点击鼠标。<br>├─办公软件<br>│ ├─[√] Microsoft Office 2003 SP3(2013-06版)<br>│ ├─[√] 百度拼音输入法<br>│ ├─[  ] 极品五笔输入法7.0官方版<br>│ ├─[√] 极点五笔7.13官方版<br>│ ├─[√] ACDSee 5.0 系统封装专用版<br>├─网络软件<br>│ ├─[√] 腾讯QQ2013Beta4<br>│ ├─[  ] 360安全浏览器正式版<br>│ ├─[√] 世界之窗浏览器 2.4 Final<br>│ ├─[√] 迅雷7去广告VIP6优化版<br>│ ├─[√] 百度浏览器2.12正式版<br>├─影音图像<br>│ ├─[√] 暴风影音5.19<br>│ ├─[√] PPTV网络电视3.3版<br>│ ├─[√] 酷我音乐2013<br>│ ├─[  ] 多米音乐<br>│ ├─[  ] 千千静听5.7去增强版<br>│ ├─[√] 风行电影<br>├─系统软件<br>│ ├─[√] Windows 一键还原 2012<br>│ ├─[  ] WinRAR_5.0Beta5 简体中文版<br>│ ├─[√] 建立宽带拨号连接<br>│ ├─[  ] 个人资料转移-到D盘<br>├─实用软件<br>│ ├─[√] 装机人员工具箱<br>│ ├─[  ] 右键添上“显示/隐藏系统文件”菜单<br>│ ├─[√] 一键清理优化选项<br>│ ├─[√] 自动清除多余开机启动项<br>│ ├─[√] 摄像头工具<br>│ ├─[  ] 驱动精灵2013去广告版<br>├─安全防护<br>│ ├─[  ] 360安全卫士 V8.6优化版<br>│ ├─[√] 恢复系统默认 hosts 文件</p>
-<p>桌面上放有WIN7的各种激活工具 如果装好系统进到桌面发现还没有激活 请用WIN7激活工具文件夹里面的工具激活</p>
-<h1 id="◆_安装说明：">◆ 安装说明：</h1><p>1、光盘安装：<br>   用刻录软件，选择映像刻录方式来刻录ISO文件，刻录前请先校验一下文件的准确性，刻录速度推荐8X！</p>
-<h2 id="在BIOS中设置光驱启动，选择第一项(安装Windows7SP1纯净版)即可自动安装到硬盘第一分区。有隐藏分区的品牌机建议手动安装。">   在BIOS中设置光驱启动，选择第一项(安装Windows7SP1纯净版)即可自动安装到硬盘第一分区。有隐藏分区的品牌机建议手动安装。</h2><p>2、硬盘安装：<br>   如已刻录光盘，在WINDOWS下双击光盘自动播放程序，选择“安装Windows7_SP1旗舰版V5.3纯净+软件选择版”即可。<br>   如未刻录光盘，可用WinRAR打开ISO文件，把“WIN7SP1.GHO”及“硬盘安装.exe”解压到D(非C盘)盘根目录下，双击运行“硬盘安装.exe”，点击“确定”按钮，电脑将会自动重启，实现全自动安装。 </p>
-<p>友情提示：安装前请务必备份好原系统的重要数据。建议提前转移个人资料并备份硬件驱动。 </p>
-<h1 id="◆_常见问题及解决方法：">◆ 常见问题及解决方法：</h1><p>1、系统采用最新软激活技术，激活成功率高，如发现系统未激活，请运行维护工具集内的激活工具。<br>2、如果您是第一次安装Windows7，甚至从未安装使用过Vista的话，请一定要有耐心，因为刚开始可能会有点不习惯或不顺手，接受和熟悉它需要一个过程，如果没有耐心的话再好的系统可能也就此错过；<br>3、因为Vista下能用的驱动在Win7下都能正常使用，所以如果您装过Vista的话，请用驱动人生或驱动精灵做个备份，安装好Windows 7后恢复即可。<br>4、IE设置在新选项卡打开链接，这样就不会出现多窗口了：<br>　 打开IE&gt;工具&gt;Internet选项，点“选项卡”右边的“设置”，建议取消第二行前面的勾，然后把“遇到弹出窗口时”设置成“始终在新选项卡中打开弹出窗口”；<br>5、让字体看起来更清晰的设置：<br>　　打开控制面板&gt;外观和个性化&gt;字体，点击“调整Clear Type文本”，然后勾选“启用Clear Type（C）”，然后一路点“下一步”即可。<br>6、19寸宽屏在推荐分辨率1440*900时解决字体小的问题：调节自定义DPI到125或138或150等不要选择“使用xp风格DPI缩放比例”，能解决浏览器和QQ等应用软件字体小的问题。<br>　　控制面板\外观和个性化\个性化，在左侧有个“调整字体大小（DPI）”的选项。 </p>
-<h2 id="◆_警告(免责条款说明)：-1">◆ 警告(免责条款说明)：</h2><p>1、本系统完全是个人兴趣爱好，禁止任何机构及个人将此系统作为商业用途！<br>2、禁止修改并盗用他人名义在网上传播！<br>3、本系统仅供电脑爱好者作为分析系统原理及结构之用！<br>4、操作系统版权归美国微软公司所有！<br>5、请在试用24小时内删除销毁！<br>6、如果觉得好用，请从正规渠道购买正版软件光盘！<br>7、如果你同意以上条款，方可对本系统进行下载测试！ </p>
-<h2 id="8、如果你已下载本系统，说明你同意以上条款！">8、如果你已下载本系统，说明你同意以上条款！</h2><p>更新日期：2013年7月</p>
-<h2 id="友情提示：光盘经过检测安全无毒，PE中的部分破解软件可能会被个别杀毒软件误报，请放心使用。">友情提示：光盘经过检测安全无毒，PE中的部分破解软件可能会被个别杀毒软件误报，请放心使用。</h2>
+        <p>站长温馨提醒：请支持正版Windows系统<a href="http://www.microsoftstore.com.cn/类别/Windows/Windows-8-1/p/WIN81-00000">http://www.microsoftstore.com.cn/类别/Windows/Windows-8-1/p/WIN81-00000</a></p>
+<h2 id="64位win7系统镜像，集成驱动版，请戳这里">64位win7系统镜像，集成驱动版，请戳<a href="http://pan.baidu.com/s/1CTFDs">这里</a></h2><h2 id="<!-_more_->">
       
     </div>
     
@@ -553,6 +380,10 @@
       
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/02/01/win7/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -593,11 +424,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="接下来会在这个分组下给大家带来各种爱机的资讯，有想换手机的朋友请多多关注哦！">接下来会在这个分组下给大家带来各种爱机的资讯，有想换手机的朋友请多多关注哦！</h3><h2 id="1000-2000手机推荐：">1000-2000手机推荐：</h2><p>HTC Desire 820  <a href="http://eshop.htc.com/820s/820s-pc.html?extcid=_CN_HTC_SEM_NOV_Baidu_Campaign_KW_Desire%20820" target="_blank" rel="external">http://eshop.htc.com/820s/820s-pc.html?extcid=_CN_HTC_SEM_NOV_Baidu_Campaign_KW_Desire%20820</a><br>大神X7          <a href="http://www.coolpad.com/" target="_blank" rel="external">http://www.coolpad.com/</a><br>华为荣耀6Plus   vmall.com<br>魅族MX4         <a href="http://www.meizu.com/index.html?refcode=baidu_pinzuan&amp;utm_source=baidupz&amp;utm_medium=cpc&amp;utm_term=meizu_baidupz_134bc782dd566e7c" target="_blank" rel="external">http://www.meizu.com/index.html?refcode=baidu_pinzuan&amp;utm_source=baidupz&amp;utm_medium=cpc&amp;utm_term=meizu_baidupz_134bc782dd566e7c</a><br>nubia Z7 Max    <a href="http://www.nubia.cn/" target="_blank" rel="external">http://www.nubia.cn/</a><br>锤子T1          <a href="http://t.tt" target="_blank" rel="external">http://t.tt</a><br>金立ELIFE S5.1  <a href="http://www.gionee.com/" target="_blank" rel="external">http://www.gionee.com/</a><br>诺基亚Lumia830<br>联想笋尖S90<br>华为荣耀6<br>小米4<br>OPPO R3<br>Nexus 5(16G)<br>IUNI U3<br>索尼C3<br>htc 816<br>中兴Grand S Ⅱ<br>华硕ZenFone 5<br>nubia Z7 mini<br>索尼Xperia T2<br>oneplus one</p>
-<p>华为 Ascend P7<br>LG G2</p>
-<h2 id="千元手机推荐：">千元手机推荐：</h2><p>酷派大神F2  <a href="http://www.coolpad.com/FFFastBuyF2QWT.html" target="_blank" rel="external">http://www.coolpad.com/FFFastBuyF2QWT.html</a><br>酷派大神F1plus<br>荣耀畅玩4X<br>荣耀畅玩4<br>红米2 </p>
-<p><em>排名不分先后，有兴趣可以找站猪谈谈</em></p>
-
+        <h3 id="接下来会在这个分组下给大家带来各种爱机的资讯，有想换手机的朋友请多多关注哦！">接下来会在这个分组下给大家带来各种爱机的资讯，有想换手机的朋友请多多关注哦！</h3><h2 id="1000-2000手机推荐：">1000-2000手机推荐：</h2>
       
     </div>
     
@@ -610,376 +437,9 @@
 
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-java" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/01/java/" class="article-date">
-  	<time datetime="2015-01-01T07:28:33.000Z" itemprop="datePublished">2015-01-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/01/java/">我们应该如何认识编程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言：">前言：</h2><p>  这是一篇关于编程语言讨论而写的一篇文章，文章的原出处已经找不到了，感谢文章作者写了这么好的一篇文章，在我学习的路上，提供了很大的帮助。谢谢！</p>
-<hr>
-<p>  问题源于讨论那种编程语言更有钱途的问题。</p>
-<p> 我认为有些人的观点错了。错得一塌糊涂。 对于这个问题，我的基本观点是：任何实践都是理论的载体或表现形式。而理论也是由实践上升而来的。两者是辨证的。今天，我们只关注它的前一部分：任何实践都是理论的载体和表现形式。 我不是想故弄玄虚，但真理的外表看上去往往就是这么奇形怪状、难以理解。让我来给你解释一下吧。 比如：战争是军事理论的实践，也是它的表现形式。战争的胜负取决于指挥者军事理论的掌握程度（别给我举赵括这类“纸上谈兵”的反例，他们根本算不上掌握了军事理论，充其量只算是“背”下了军事理论。“掌握”和“倒背如流”这是两个概念。）</p>
-<p>  1、VC、VB、Delphi …… ，你该学哪个？</p>
-<p>  具体到编程而言，我要告诉你：任何一种计算机语言，都是计算机科学理论的载体或表现形式。C++很神吗？Java很酷吗？它们差距很远吗？是的。但从理论的层面上讲，它们没有区别，都是“面向对象”理论的一个具体形式而已。 现在的程序员们被发行编译软件（通常我们将其称为“系统软件”）的商家不断推出的产品搞得眼花缭乱，头痛欲裂。不断地跟在新语言后面跑，这条路还没跑到头，那边的“新路”又鸣锣开张了，于是再跟着跑……渐渐地有些人开始感叹：学海无涯、学无止境，或什么“程序员是青春饭，过了三十别想干”…… 在此我不得不叹息：中国的教育真是一种“形而上学”的教育。早在高中时代我们就学过“辨证唯物主义”的基本理论：做事情要抓主要矛盾。这一条恐怕谁都知道，却鲜见谁能在实践中把这一理论运用得“炉火纯青”的。把这一理论运用到编程上来讲就是： 理论是主要矛盾，语言是次要矛盾，学会了理论，再具体到学一种语言时，你只不过是在进行某种消遣而已。 现在学VC的普遍看不起学VB的或学Delphi的。但如果一个用Delphi的人，在需要写web程序时，用TCP/IP做了一个构架，嵌入到应用程序中；而另一个用VC的人却只会把一个又一个的组件拖来拉去的做些个“例子程序”的翻版。你说他们两个谁历害？Delphi和VC谁历害？ 真应了这样一段话，问：纽约好还是上海好？答：有钱哪儿都好，没钱哪儿都不好。上海的富人并不比纽约的富人少多少的优越感，而纽约的乞丐也不比上海的乞丐多多少幸福感。 现在你还会说学VC的人就一定比学Delphi的人水平高、“钱景”好吗？</p>
-<p>  2、“浅薄”绝不该是中国程序员的性格特征！！！</p>
-<p>   想问一句：中国程序员这么多，你们真地把基础理论学好了吗？别用你现有的编程经历告诉我：编程不需要数学，不需要数据结构，不需要编译原理…… ……说话得负责任，您知道吗？我之所以发表这篇文章，就是因为再也看不下去这种在中国编程界漫延的歪理邪说了！邪教害死的是人的个体，你们害死的是中国软件业的未来！如果再让这种理论继续毒害编程新手的思想，中国将在计算机领域失去民族的尊严！！！ 请问，操作系统、编译软件、数据库系统…… 这些被称为“系统软件”的东东，中国有几样拿得出手的产品？也许是我孤陋寡闻，据我所知：我们国家一件像样的也没有。 不错，我们是有一些网站的股票在西方上市了，我们是有一些人被国外公司请去做高级职员了，我们也有一些人把西方的官方网站给黑了……但是，我们用的编译工具是谁的产品？我们微机里装得是谁做出的操作系统？我们的程序跑在谁的芯片上？ 爱之深，恨之切。我爱的是中国，但我痛恨不是中国，而是在中国编程界普遍流行的“浅薄”和“自以为是”，这是我们民族软件业的一颗毒瘤！ 是的，现在编程方面快速入门的书满天飞，让程序员的门槛越来越低。我这个外行就得益于这个“低门槛”，跑了进来。但进来后，我们就不能再这样浅薄下去了——我的兄弟们！ 用他国提供的工具做几个网站，写几个应用程序，弄出几个病毒…… 是振兴不了民族软件业的。顺便说一句：我尊敬求伯君，但我不认为金山公司和其系列产品配得上被称为“民族软件业”的大旗，相对这个称号，它差得太远了。 ……   …… 写flash软件的人会认为用flash做动画的人比他历害吗？Adobe公司真的认为考取Adobe证书的人是“人才”吗？MSCE、MSCD…… 通过这类考试得到微软徽章的人，在微软眼里是“人才”还是“义务推销员”？持这类证书以及其他一些大软件公司认证的人，你们还在以为自己是“中国软件业的精英”而感叹“怀才不遇”、工资太少吗？ 醒醒吧，朋友。别再用编程不需要理论的话来自欺欺人了，别再用自己的浅薄来教导别人像自己一样浅薄了。我想问问那些称数学、数据结构等基础课程对编程没用的人： 请你们搞清一个概念：是这些理论“没用”，还是你们“没用到”；是你们“没用到”，还是你们的水平根本“用不到”；是你们“不需要用”，还是你们根本“不会用”？ 举个例子，操作系统中的工作调度，若工作优先权相同，用什么方法进行调度？当然是“先到先做”——这就是数据结构中“队列”的应用。你们说“用不到”，只怕是因为到目前为止还没机会接触这类“高端编程”的挑战吧？这样的话，那就算了，挣你的钱去，但别再来这里误人子弟，吹嘘什么优秀的程序员不需要理论。 是谁说系统软件发展的黄金时代已经过去了？Linux不就是在MS操作系统雄霸多年的情况下一举成名的吗？中国难道就找不到这样一个机会？ 不，如果我们的程序员克服了现在的浮燥与急功近利，我们一样可以在“系统软件”这一软件业的“高端”树立自己的品牌！所以请看下面——</p>
-<p>  3、年轻人应该有宏伟的志向。</p>
-<p>   用别人的产品做自己的东西，你永远只是个“高级客户”，成不了真正的开发者。不管你用他国的系统软件开发出多少好的产品，挣了多少钱，只要人家一升级、或一推出新产品，你口袋里的银子连同最后一条小裤叉也会被剥夺得一干二净。你，只不过是一个高级打工仔。 我希望打算进入编程界的朋友们，特别是现在还很年轻的朋友，能有一个比较高的志向。更希望已经进到这行的朋友们能有以“振兴民族软件业”为己任，力争成为中国软件业的“旗手”。 我不赞同方东兴把微软骂得一无是处。更不赞同年轻人学他那样，一赌气而拒绝用微软的产品，拒绝Windows、拒绝VC 、拒绝IE ……  我认为方东兴只是个狭隘的民族主义者。他看到了中国软件业民族的一面，却不愿承认我们落后的一面。毫无根据的“自尊”等于自取灭亡。清朝末年，我们的科技并不落后于西方多少，但我们过分“自尊”的“大国思想”却使我们失去了向其他国家学习的机会。当我们嘲笑西方人的蓝眼睛、大鼻子的时候，他们的坚船利炮，却把我们“央央大国”的皇帝、太后打得满世界逃难。慈禧太后被打得满地找牙的时候，不得不说出“量中华之物力，博与国之欢欣”的龌龊话，此时，她“大国皇太后”的自尊何在呢？前面自尊过了头，事后必遭报应。这报应一持续，就是几百年，直到现在。难道我们还要继续闭门造车，再走老路吗？ 我们现在承认微软比我们强，向微软学习，并不等于我们永远要跟在他后面跑！在我们低下头的时候，我们就应该想到，何时能再抬起这颗高贵的头颅！！！而且是“一定”！！！！！自尊不是错，错是错在“太盲目”——妄自尊大，你就要和慈禧一样被打得满地找牙。做为一个大国，一个明智的民族，我们不能讳疾忌医。 年轻人，志当存高远。相信我，当你以民族振兴为己任的时候，封王称帝、富贵荣华，都只不过是千秋伟业的一个副产品。在这个尊重知识、崇尚科学的年代，志向高远的人，永远不必担心自己的“钱途”。 不必讳言，我承认我当初进入编程领域不完全出于兴趣，也有“钱途”方面的考虑。但就好像当年参加八路的战士当中，有些只是报着能吃上军粮或打鬼子报家仇的思想入伍的，但后来却学习了马列，提高了觉悟，转为以兴国救民为目标一样，当我一步步深入到这行以后，当我决定考研并慢慢提高了认识以后，我的目的变了。我觉得应该有个更高的人生目标，更高志向和追求来支持我的行动。这个目标就是：为民族软件业尽一把自己的力。 真心希望你与我同行。 </p>
-<p>  4、几点建议：</p>
-<p>  建议大家耐下心来先学好理论，然后再选择具体的工具或语言。不过，在所有这一切开始以前，先打好C语言和汇编基础。 能不能得道，就看你在见到别人做出一些花里胡哨的东西时，是不是能坚定信心、耐住寂寞、抵御诱惑了。 一个和我一起学习C语言的人，学完就直接开始玩VC，而我则潜下心来学了些C++和理论方面的东西。早早地，他就能仿照书上用VC做些界面似的东西在我面前炫耀，可后来，当我基础理论的学习告一段落，做个图书管理程序卖了800大洋时，他还只是停留在做“例子程序”的水平上。现在我们谈论起编程，深度早已不可同日而语了。他起跑领先，却落在了后面。 我不敢自以为是，只是想用这个亲身经历告诉大家：学编程，决不可心浮气燥。</p>
-<p>  5、结束语 </p>
-<p>  我的话触到许多人的痛处，而且由于写时心中气愤难平，有些出言不逊，可能要遭人骂了。不过，既然写了，就不怕骂。因为：以上所言全是忠告，识不识货，就看您的眼光了。</p>
-<pre><code><span class="keyword">*</span>再次感谢原作者！<span class="keyword">*</span>      cmkd.net    -2015.01.01
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/编程/">编程</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-guangcongxian" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/22/guangcongxian/" class="article-date">
-  	<time datetime="2014-12-22T12:19:19.000Z" itemprop="datePublished">2014-12-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/22/guangcongxian/">广从线路</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="广州广从1快线_（推荐：广从直达，不经过华软）">广州广从1快线 （推荐：广从直达，不经过华软）</h2><p>从化线路 <strong>广州</strong>汽车站 06:45—20:30 从化汽车站 06:00—19:30 票价24元 广州二汽从化分公司<br>去程：广州汽车站 - 从化汽车站 (2站)<br>回程：从化汽车站 - 广州汽车站 (2站)<br>广州广从1快线备注信息：<br>直达快线，中途不停站，每15分钟一班，走机场高速、街北高速</p>
-<h3 id="慢线(不推荐，走国道，用时1-5小时+)">慢线(不推荐，走国道，用时1.5小时+)</h3><p>去程：广州汽车站总站 - 童心南 - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站(总站) (18站)<br>回程：从化汽车站(总站) - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 广州汽车站总站 (17站)<br>本线在以下站点可以换乘广州地铁：<br>广州汽车站总站(地铁2、5号线，广州火车站)；<br>童心南(地铁5号线，小北站)。</p>
-<h2 id="广州广从2线">广州广从2线</h2><p>从化线路 <strong>芳村</strong>客运站 07:10—21:00 从化汽车站 06:00—20:00 分段收费，全程24元 广州二汽从化分公司<br>去程：芳村客运站 - 黄沙大道 - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (18站)<br>回程：从化汽车站(总站) - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 黄沙大道 - 芳村客运站 (18站)<br>广州广从2线备注信息：<br>每15-20分钟一班</p>
-<h3 id="广州从化3路">广州从化3路</h3><p>从化线路 星河绿洲总站 06:10—22:00 明珠工业园总站 06:50—21:00 票价2元 顺途公汽<br>去程：星河绿洲总站 - 光导纤维厂 - 大江路口 - 河东交通局 - 河东广场 - 河东市场 - 七星路口[从化] - 大津电器 - 商贸城[从化] - 从化汽车站 - 姓钟围(美时家居广场) - 雅居乐路口 - 劳动社保局 - 新城派出所 - 建设路 - 电力局[从化] - 新城市场 - 青云公园 - 新村路口 - 西宁西路 - 西街口 - 西宁小学 - 旺城市场 - 从化职校 - 从化五中 - 万盛广场 - 石合路口 - 三将军路口 - 镇泰工业城 - 大夫田村路口 - 丽峰路 - 明珠管委会 - 明珠市场 - 明珠工业园总站 (34站)<br>回程：明珠工业园总站 - 明珠市场 - 明珠管委会 - 丽峰路 - 大夫田村路口 - 镇泰工业城 - 三将军路口 - 石合路口 - 万盛广场 - 从化五中 - 从化职校 - 旺城市场 - 西宁小学 - 西街口 - 西宁西路 - 新村路口 - 青云公园 - 新城市场 - 电力局[从化] - 建设路 - 新城派出所 - 劳动社保局 - 雅居乐路口 - 姓钟围(美时家居广场) - 从化汽车站 - 商贸城[从化] - 大津电器 - 七星路口[从化] - 河东市场 - 河东广场 - 河东交通局 - 大江路口 - 光导纤维厂 - 星河绿洲总站 (34站)<br>广州从化3路备注信息：<br>星河绿洲总站开出往明珠工业园总站末班车为20:30，20:30—22:00的班次只到从化职校</p>
-<h2 id="广州广从3线">广州广从3线</h2><p>从化线路 <strong>罗冲围</strong>客运站 07:20—20:45 从化汽车站 05:30—18:30 分段收费，全程24元 广州二汽从化分公司<br>去程：罗冲围客运站 - 小坪南 - 黄石路 - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (19站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 黄石路 - 石井 - 罗冲围客运站 (19站)<br>广州广从3线备注信息：<br>每30-45分钟一班</p>
-<h2 id="广州广从4快线_（推荐：华软-天河，17元45分钟；特点：地铁口，岗顶）">广州广从4快线 （推荐：华软-天河，17元45分钟；特点：地铁口，岗顶）</h2><p>从化线路 <strong>天河</strong>客运站 07:00—18:40 从化汽车站 06:00—17:40 分段收费，全程24元 广州二汽从化分公司&amp;顺途公汽<br>去程：天河客运站 - 天平架 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (12站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 天平架 - 天河客运站 (12站)<br>广州广从4快线备注信息：<br>每20分钟一班，走京珠高速</p>
-<h3 id="广州广从4线">广州广从4线</h3><p>从化线路 <strong>天河</strong> 客运站 06:15—21:00 从化汽车站 05:30—20:00 分段收费，全程24元 广州二汽从化分公司&amp;顺途公汽<br>去程：天河客运站 - 天平架 - 南方医科大学 - 大源 - 太和中路 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (17站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和中路 - 大源 - 南方医科大学 - 天平架 - 天河客运站 (17站)<br>广州广从4线备注信息：<br>每10-15分钟一班</p>
-<h2 id="广州广从5线_（推荐：华软-广州东；17元全程用时45分钟，东站：火车站，和谐号，地铁口）">广州广从5线 （推荐：华软-广州东；17元全程用时45分钟，东站：火车站，和谐号，地铁口）</h2><p>从化线路 <strong>广州东站</strong>汽车客运站 07:00—21:00 从化汽车站 05:30—19:30 分段收费，全程24元 广州二汽从化分公司<br>去程：广州东站汽车客运站 - 天平架 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (12站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 天平架 - 广州东站汽车客运站 (12站)<br>广州广从5线备注信息：<br>每15-20分钟一班</p>
-<h3 id="广州从化5路（华软-从化汽车站，3元）">广州从化5路（华软-从化汽车站，3元）</h3><p>从化线路 新图书馆总站 05:30—20:10 太平公交总站 05:50—20:30 分段收费，全程3元 顺途公汽<br>去程：新图书馆(总站) - 自来水公司 - 广播电视中心 - 投资服务中心 - 儿童乐园 - 河堤广场 - 旅游局[从化] - 新世纪广场[从化] - 电力局[从化] - 府前中路 - 华强大厦 - 新城广场 - 中国电信 - 雅居乐路口 - 姓钟围(美时家居广场) - 从化汽车站 - 联发市场 - 白田岗 - 珠江学院[从化] - 沙贝村 - 赤草村 - 逸泉大酒店 - 逸泉山庄 - 邓村路口 - 元洲岗 - 环亚工业园 - 南洋中英文学校 - 神岗村 - 神岗墟 - 神岗中学 - 珠江国际城 - 共星村 - 夏湾拿花园 - 大塘边 - 水南村 - 广州大学华软学院 - 开发区管委会[太平] - 开发区紫泉站 - 太平小学 - 太平镇政府 - 太平公交总站 (41站)<br>回程：太平公交总站 - 太平镇政府 - 太平小学 - 开发区紫泉站 - 开发区管委会[太平] - 广州大学华软学院 - 水南村 - 大塘边 - 夏湾拿花园 - 共星村 - 珠江国际城 - 神岗中学 - 神岗墟 - 神岗村 - 南洋中英文学校 - 环亚工业园 - 元洲岗 - 邓村路口 - 逸泉山庄 - 逸泉大酒店 - 赤草村 - 沙贝村 - 珠江学院[从化] - 白田岗 - 联发市场 - 从化汽车站 - 姓钟围(美时家居广场) - 雅居乐路口 - 中国电信 - 新城广场 - 华强大厦 - 府前中路 - 电力局[从化] - 新世纪广场[从化] - 旅游局[从化] - 河堤广场 - 儿童乐园 - 投资服务中心 - 广播电视中心 - 自来水公司 - 新图书馆(总站) (41站)<br>广州从化5路备注信息：<br>分段收费标准：<br>往太平公交总站方向：起步2元，过神岗墟3元；神岗墟起2元<br>往新图书馆总站方向：起步2元，过神岗墟3元；神岗墟起2元</p>
-<h2 id="广州广从6线">广州广从6线</h2><p>从化线路 <strong>东圃</strong>客运站 06:40—19:30 从化汽车站 06:00—19:00 分段收费，全程24元 广州二汽从化分公司<br>去程：东圃客运站 - 棠德小区北 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (12站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 棠德小区北 - 东圃客运站 (12站)<br>广州广从6线备注信息：<br>每15-20分钟一班</p>
-<h2 id="广州广从7线">广州广从7线</h2><p>从化线路 <strong>黄埔</strong>客运站发车时间：07:20 08:50 12:40 15:50 17:10 从化汽车站发车时间：05:30 09:42 12:44 14:30 18:00 分段收费，全程25元 广州二汽从化分公司<br>去程：黄埔客运站 - 棠德小区北 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (12站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 棠德小区北 - 黄埔客运站 (12站)<br>广州广从7线备注信息：<br>无</p>
-<h2 id="广州广从8快线_（推荐：华软-广园15元用时45分钟）">广州广从8快线 （推荐：华软-广园15元用时45分钟）</h2><p>从化线路 <strong>广园</strong>客运站 06:15—21:30 从化汽车站 05:50—20:20 分段收费，全程22元 顺途公汽<br>去程：广园客运站 - 黄石东路口 - 陈田村 - 元下田 - 钟落潭路口 - 长腰岭 - 湴湖(广州科技学院) - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (16站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 湴湖(广州科技学院) - 长腰岭 - 钟落潭路口 - 元下田 - 陈田村 - 黄石东路口 - 广园客运站 (16站)<br>广州广从8快线备注信息：<br>每13分钟一班</p>
-<h3 id="广州广从8线">广州广从8线</h3><p>从化线路 <strong>广园</strong>客运站 06:20—21:30 从化汽车站 05:40—20:00 分段收费，全程21元 顺途公汽<br>去程：广园客运站 - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (17站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 广园客运站 (17站)<br>广州广从8线备注信息：<br>每14分钟一班</p>
-<h2 id="广州广从9线">广州广从9线</h2><p>从化线路 <strong>滘口</strong>客运站 06:25—20:30 从化汽车站 05:30—18:30 分段收费，全程24元 顺途公汽<br>去程：滘口客运站 - 桥中(双桥路) - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (18站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 桥中(双桥路) - 滘口客运站 (18站)<br>广州广从9线备注信息：<br>每15-20分钟一班</p>
-<h2 id="广州广从10线">广州广从10线</h2><p>从化线路 <strong>越秀南</strong>客运站 06:30—20:15 从化汽车站 05:30—19:40 分段收费，全程24元 顺途公汽<br>去程：越秀南客运站 - 白云索道 - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (18站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 白云索道 - 越秀南客运站 (18站)<br>广州广从10线备注信息：<br>每10-15分钟一班</p>
-<h2 id="广州广从11线">广州广从11线</h2><p>从化线路 <strong>海珠</strong>客运站 06:20—20:15 从化汽车站 05:30—18:30 分段收费，全程24元 顺途公汽<br>去程：海珠客运站 - 白云索道 - 黄石东路口 - 东平路口(白云心理医院) - 龙归路口 - 太和路口 - 竹料路口 - 钟落潭路口 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (18站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 钟落潭路口 - 竹料路口 - 太和路口 - 龙归路口 - 东平路口(白云心理医院) - 黄石东路口 - 白云索道 - 海珠客运站 (18站)<br>广州广从11线备注信息：<br>每15-20分钟一班</p>
-<p>广州从化汽车站－番禺汽车客运站 </p>
-<p>从化线路 从化汽车站 06:30—16:45 番禺汽车客运站 06:10—19:00 分段收费，全程36元 广州二汽从化分公司&amp;广州二汽番禺分公司<br>去程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 塘步西 - 里仁洞 - 广州南汽车客运站 - 钟村 - 祈福新村 - 市桥汽车站 - 番禺汽车客运站 (17站)<br>回程：番禺汽车客运站 - 市桥汽车站 - 祈福新村 - 钟村 - 广州南汽车客运站 - 里仁洞 - 塘步西 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (17站)<br>广州从化汽车站－番禺汽车客运站备注信息：<br>每50-60分钟一班</p>
-<p>广州花都客运站－从化汽车站 </p>
-<p>花都线路 花都客运站 06:00—20:30 从化汽车站 06:00—20:30 分段收费，全程13元 花都恒通&amp;广州二汽从化分公司<br>去程：花都客运站 - 新世纪广场[花都] - 丽美酒店 - 横潭路口 - 横潭牌坊 - 红珠路口 - 培新中学 - 城东停车场 - 三鸟市场 - 宝田加油站 - 田美新村 - 润龙里 - 莲塘市场(花都商业大道) - 莲塘 - 花山第二工业区 - 龙口 - 东湖安置区 - 小布 - 花山花侨中学 - 南门 - 坪山 - 花山镇政府 - 祈福物流中心 - 洛场村 - 花山中队 - 天和 - 九湖村 - 三凤村 - 迳口中学 - 花东市场 - 花东汽车站 - 花东派出所 - 七星路口[花东] - 永光村 - 金田工业区 - 大塘中学 - 富力金港城路口 - 保良村 - 花侨农场 - 花侨市场 - 龙岗路口 - 吉星村 - 港头 - 水口营 - 四联路口 - 榴花中学 - 北兴 - 北兴供电所 - 京珠路口 - 镇东 - 杨三村(西) - 杨三村(东) - 杨二村 - 杨一村(西) - 杨一村(东) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (62站)<br>回程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 杨一村(东) - 杨一村(西) - 杨二村 - 杨三村(东) - 杨三村(西) - 镇东 - 京珠路口 - 北兴供电所 - 北兴 - 榴花中学 - 四联路口 - 水口营 - 港头 - 吉星村 - 龙岗路口 - 花侨市场 - 花侨农场 - 保良村 - 富力金港城路口 - 大塘中学 - 金田工业区 - 永光村 - 七星路口[花东] - 花东派出所 - 花东汽车站 - 花东市场 - 迳口中学 - 三凤村 - 九湖村 - 天和 - 花山中队 - 洛场村 - 祈福物流中心 - 花山镇政府 - 坪山 - 南门 - 花山花侨中学 - 小布 - 东湖安置区 - 龙口 - 花山第二工业区 - 莲塘 - 莲塘市场(花都商业大道) - 润龙里 - 田美新村 - 宝田加油站 - 商业大道东 - 金联市场 - 红珠路 - 新华中学 - 横潭市场 - 丽美酒店 - 新世纪广场[花都] - 花都客运站 (61站)<br>广州花都客运站－从化汽车站备注信息：<br>每15-25分钟一班<br>广州从化汽车站－鳌头 </p>
-<p>从化线路 从化汽车站 06:30—19:30 鳌头 06:30—19:30 分段收费，全程5元 广州二汽从化分公司<br>去程：从化汽车站 - 青云路口 - 从化中心医院 - 从化五中 - 万盛广场 - 石合路口 - 镇泰工业城 - 岭南村 - 华夏学院 - 旗杆 - 万宝工业园 - 鳌头水泥厂 - 人和[鳌头] - 白兔村 - 鳌头 (15站)<br>回程：鳌头 - 白兔村 - 人和[鳌头] - 鳌头水泥厂 - 万宝工业园 - 旗杆 - 华夏学院 - 岭南村 - 镇泰工业城 - 石合路口 - 从化五中 - 从化职校 - 旺城市场 - 西街口 - 新村路口 - 青云路 - 从化汽车站 (17站)<br>广州从化汽车站－鳌头备注信息：<br>每10-15分钟一班<br>广州从化汽车站－鳌头高平 </p>
-<p>从化线路 从化汽车站 05:30—19:40 鳌头高平 06:20—20:40 分段收费，全程7元 顺途公汽<br>去程：从化汽车站 - 青云路口 - 从化中心医院 - 从化五中 - 万盛广场 - 石合路口 - 镇泰工业城 - 岭南村 - 华夏学院 - 旗杆 - 万宝工业园 - 鳌头水泥厂 - 人和[鳌头] - 白兔村 - 鳌头路口 - 龙潭收费站 - 龙聚 - 龙潭[鳌头] - 官庄 - 月荣 - 高平 (21站)<br>回程：高平 - 月荣 - 官庄 - 龙潭[鳌头] - 龙聚 - 龙潭收费站 - 鳌头路口 - 白兔村 - 人和[鳌头] - 鳌头水泥厂 - 万宝工业园 - 旗杆 - 华夏学院 - 岭南村 - 镇泰工业城 - 石合路口 - 从化五中 - 从化职校 - 旺城市场 - 西街口 - 新村路口 - 青云路 - 从化汽车站 (23站)<br>广州从化汽车站－鳌头高平备注信息：<br>每5-10分钟一班</p>
-<p>广州从化汽车站－山心 </p>
-<p>从化线路 从化汽车站 06:10—16:55 山心 07:30—18:15 分段收费，全程8元 顺途公汽<br>去程：从化汽车站 - 河东市场 - 新世纪广场[从化] - 新村路口 - 西街口 - 旺城市场 - 从化职校 - 从化五中 - 万盛广场 - 石合路口 - 镇泰工业城 - 岭南村 - 华夏学院 - 旗杆 - 万宝工业园 - 鳌头水泥厂 - 人和[鳌头] - 白兔村 - 鳌头 - 五禾 - 石咀 - 洲洞 - 山心 (23站)<br>回程：山心 - 洲洞 - 石咀 - 五禾 - 鳌头 - 白兔村 - 人和[鳌头] - 鳌头水泥厂 - 万宝工业园 - 旗杆 - 华夏学院 - 岭南村 - 镇泰工业城 - 石合路口 - 从化五中 - 从化职校 - 旺城市场 - 西街口 - 新村路口 - 青云路 - 从化汽车站 (21站)<br>广州从化汽车站－山心备注信息：<br>从化汽车站发车时间：<br>06:10 07:05 08:00 08:50 09:45 10:40 11:35 12:30 13:25 14:15 15:10 16:05 16:55<br>山心发车时间：<br>07:30 08:25 09:20 10:10 11:05 12:00 12:55 13:50 14:45 15:35 16:30 17:25 18:15</p>
-<p>广州从化汽车站－源湖桃莲 </p>
-<p>从化线路 从化汽车站 06:30—18:00 桃莲 07:15—18:45 分段收费，全程6元 广州二汽从化分公司<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星路口 - 云台山 - 温泉镇政府 - 牛步迳 - 源湖村 - 鸡笼岗 - 平地岗 - 中田 - 桃莲 (16站)<br>回程：桃莲 - 中田 - 平地岗 - 鸡笼岗 - 源湖村 - 牛步迳 - 温泉镇政府 - 云台山 - 宣星路口 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (20站)<br>广州从化汽车站－源湖桃莲备注信息：<br>从化汽车站发车时间：<br>06:30 07:30 08:30 09:50 10:30 11:50 12:30 13:50 14:30 15:50 16:30 18:00<br>桃莲发车时间：<br>07:15 08:15 09:10 10:30 11:10 12:30 13:10 14:30 15:10 16:30 17:15 18:45</p>
-<p>广州从化汽车站－宣星桃莲 </p>
-<p>从化线路 从化汽车站发班时间：09:10 11:10 15:10 17:15 桃莲发班时间：09:50 11:50 15:50 18:00 分段收费，全程6元 广州二汽从化分公司<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星村 - 鸡笼岗 - 平地岗 - 中田 - 桃莲 (12站)<br>回程：桃莲 - 中田 - 平地岗 - 鸡笼岗 - 宣星村 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (16站)<br>广州从化汽车站－宣星桃莲备注信息：<br>广州从化汽车站－白水寨 </p>
-<p>从化线路 从化汽车站 06:30—18:20 白水寨 07:16—19:00 分段收费，全程6元 广州二汽从化分公司<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 石海 - 大桥迳 - 石南 - 黄泥田 - 灌村 - 石坑[温南公路] - 大尖山 - 飞碟场 - 榕树吓 - 白水寨 (15站)<br>回程：白水寨 - 榕树吓 - 飞碟场 - 大尖山 - 石坑[温南公路] - 灌村 - 黄泥田 - 石南 - 大桥迳 - 石海 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (19站)<br>广州从化汽车站－白水寨备注信息：<br>每23-30分钟一班</p>
-<p>广州从化汽车站－民乐 </p>
-<p>从化线路 从化汽车站 06:00—19:10 民乐 07:00—20:10 分段收费，全程3元 顺途公汽<br>去程：从化汽车站 - 河东市场 - 新世纪广场[从化] - 新村路口 - 西街口 - 旺城市场 - 从化职校 - 从化五中 - 万盛广场 - 石合路口 - 镇泰工业城 - 岭南村 - 华夏学院 - 旗杆 - 万宝工业园 - 鳌头水泥厂 - 人和[鳌头] - 万力轮胎厂 - 白石[民乐] - 龙星 - 玲洲 - 民乐 (22站)<br>回程：民乐 - 玲洲 - 龙星 - 白石[民乐] - 万力轮胎厂 - 人和[鳌头] - 鳌头水泥厂 - 万宝工业园 - 旗杆 - 华夏学院 - 岭南村 - 镇泰工业城 - 石合路口 - 从化五中 - 从化职校 - 旺城市场 - 西街口 - 新村路口 - 青云路 - 从化汽车站 (20站)<br>广州从化汽车站－民乐备注信息：<br>每30-45分钟一班<br>广州从化汽车站－良口车站 </p>
-<p>从化线路 从化汽车站 06:30—19:40 良口车站 06:30—19:40 分段收费，全程6.5元 顺途公汽<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星路口 - 云台山 - 温泉镇政府 - 牛步迳 - 温泉中队 - 中山大学南方学院 - 桥栏 - 卫东 - 黄围[良口] - 米埔 - 高沙 - 热水 - 文轩苑 - 碧水湾 - 六三市 - 良口车站 (23站)<br>回程：良口车站 - 六三市 - 碧水湾 - 文轩苑 - 热水 - 高沙 - 米埔 - 黄围[良口] - 卫东 - 桥栏 - 中山大学南方学院 - 温泉中队 - 牛步迳 - 温泉镇政府 - 云台山 - 宣星路口 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (27站)<br>广州从化汽车站－良口车站备注信息：<br>每10-20分钟一班<br>广州从化汽车站－吕田车站 </p>
-<p>从化线路 从化汽车站 06:40—18:30 吕田车站 06:30—18:15 分段收费，全程13元 顺途公汽<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星路口 - 云台山 - 温泉镇政府 - 牛步迳 - 温泉中队 - 中山大学南方学院 - 桥栏 - 卫东 - 黄围[良口] - 米埔 - 高沙 - 热水 - 文轩苑 - 碧水湾 - 六三市 - 良口车站 - 黄竹塱 - 森林公园 - 新群 - 温塘肚 - 古田 - 耕富岭 - 塘田 - 响水峡 - 马鞍山 - 镇安 - 草埔 - 蓄能电站路口 - 吕田车站 (36站)<br>回程：吕田车站 - 蓄能电站路口 - 草埔 - 镇安 - 马鞍山 - 响水峡 - 塘田 - 耕富岭 - 古田 - 温塘肚 - 新群 - 森林公园 - 黄竹塱 - 良口车站 - 六三市 - 碧水湾 - 文轩苑 - 热水 - 高沙 - 米埔 - 黄围[良口] - 卫东 - 桥栏 - 中山大学南方学院 - 温泉中队 - 牛步迳 - 温泉镇政府 - 云台山 - 宣星路口 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (40站)<br>广州从化汽车站－吕田车站备注信息：<br>每10-15分钟一班<br>广州从化汽车站－长流东明 </p>
-<p>从化线路 从化汽车站发班时间：06:10 10:00 13:00 15:30 东明发班时间：08:20 12:00 15:30 17:20 分段收费，全程17元 顺途公汽<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星路口 - 云台山 - 温泉镇政府 - 牛步迳 - 温泉中队 - 中山大学南方学院 - 桥栏 - 卫东 - 黄围[良口] - 米埔 - 高沙 - 热水 - 文轩苑 - 碧水湾 - 六三市 - 良口车站 - 黄龙带 - 风木塱 - 梅树 - 长流 - 乐明 - 石明 - 坪地 - 东明 (31站)<br>回程：东明 - 坪地 - 石明 - 乐明 - 长流 - 梅树 - 风木塱 - 黄龙带 - 良口车站 - 六三市 - 碧水湾 - 文轩苑 - 热水 - 高沙 - 米埔 - 黄围[良口] - 卫东 - 桥栏 - 中山大学南方学院 - 温泉中队 - 牛步迳 - 温泉镇政府 - 云台山 - 宣星路口 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (35站)</p>
-<p>广州从化汽车站－吕田东明 </p>
-<p>从化线路 从化汽车站 06:55—15:00 东明 08:45—16:40 分段收费，全程18元 顺途公汽<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星路口 - 云台山 - 温泉镇政府 - 牛步迳 - 温泉中队 - 中山大学南方学院 - 桥栏 - 卫东 - 黄围[良口] - 米埔 - 高沙 - 热水 - 文轩苑 - 碧水湾 - 六三市 - 良口车站 - 黄竹塱 - 森林公园 - 新群 - 温塘肚 - 古田 - 耕富岭 - 塘田 - 响水峡 - 马鞍山 - 镇安 - 草埔 - 蓄能电站路口 - 吕田车站 - 竹坑[吕田] - 汾水[吕田] - 东坑[吕田] - 东明 (40站)<br>回程：东明 - 东坑[吕田] - 汾水[吕田] - 竹坑[吕田] - 吕田车站 - 蓄能电站路口 - 草埔 - 镇安 - 马鞍山 - 响水峡 - 塘田 - 耕富岭 - 古田 - 温塘肚 - 新群 - 森林公园 - 黄竹塱 - 良口车站 - 六三市 - 碧水湾 - 文轩苑 - 热水 - 高沙 - 米埔 - 黄围[良口] - 卫东 - 桥栏 - 中山大学南方学院 - 温泉中队 - 牛步迳 - 温泉镇政府 - 云台山 - 宣星路口 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (44站)<br>广州从化汽车站－吕田东明备注信息：<br>从化汽车站发车时间：<br>06:55 08:25 10:40 13:40 14:20 15:00<br>东明发车时间：<br>08:45 10:30 12:30 15:40 16:00 16:40</p>
-<p>广州增城光明汽车站－从化汽车站 </p>
-<p>增城线路 增城光明汽车站 06:00—18:40 从化汽车站 06:30—19:00 分段收费，全程14元 广州粤运<br>去程：增城光明汽车站 - 保健院[增城] - 电力局[增城] - 交警中队[荔城] - 富国路口 - 富和路口 - 华农批 - 计生局[增城] - 棠村 - 桥头村 - 庆东村(临江公园) - 棠厦村 - 小楼镇政府 - 何仙姑家庙 - 迪亚春天 - 仙桂村 - 江坳绿道综合服务区 - 金谷园 - 小楼人家 - 腊布 - 腊布村路口 - 约场村 - 利迳村 - 大埔村[派潭] - 派潭交管所 - 派潭汽车站 - 从化路口 - 梁屋 - 潮山村 - 墩头 - 玉枕村 - 凤凰村委 - 钓锂 - 黄围 - 和睦村 - 谭村[从化] - 广州天马集团 - 从化汽车站 (38站)<br>回程：从化汽车站 - 广州天马集团 - 谭村[从化] - 和睦村 - 黄围 - 钓锂 - 凤凰村委 - 玉枕村 - 墩头 - 潮山村 - 梁屋 - 从化路口 - 派潭交管所 - 大埔村[派潭] - 利迳村 - 约场村 - 腊布村路口 - 腊布 - 小楼人家 - 金谷园 - 江坳绿道综合服务区 - 仙桂村 - 迪亚春天 - 何仙姑家庙 - 小楼镇政府 - 棠厦村 - 庆东村(临江公园) - 桥头村 - 棠村 - 计生局[增城] - 华农批 - 富和路口 - 富国路口 - 交警中队[荔城] - 电力局[增城] - 保健院[增城] - 增城光明汽车站 (37站)<br>广州增城光明汽车站－从化汽车站备注信息：<br>每15-20分钟一班<br>广州从化汽车站－上罗沙<br>从化线路 从化汽车站发班时间：08:00 10:00 14:00 16:00 上罗沙发班时间：08:30 10:30 14:30 16:30 票价2元 广州二汽从化分公司<br>去程：从化汽车站 - 下罗沙 - 上罗沙 (3站)<br>回程：上罗沙 - 下罗沙 - 从化汽车站 (3站)<br>广州从化汽车站－锦一<br>从化线路 从化汽车站发班时间：09:00 11:00 15:00 17:00 锦一发班时间：09:30 11:30 15:30 17:30 票价2元 广州二汽从化分公司<br>去程：从化汽车站 - 白田岗 - 锦三 - 锦二 - 锦一 (5站)<br>回程：锦一 - 锦二 - 锦三 - 白田岗 - 从化汽车站 (5站)</p>
-<p>广州从化汽车站－番禺市桥汽车站 </p>
-<p>从化线路 从化汽车站 06:10—19:20 番禺市桥汽车站 06:50—18:30 分段收费，全程35元 广州二汽从化分公司&amp;广州二汽番禺分公司<br>去程：从化汽车站 - 白田岗 - 逸泉山庄 - 神岗镇政府 - 夏湾拿花园 - 太平开发区 - 太平镇政府 - 上水(广州市老人院) - 新和 - 长腰岭 - 塘步西 - 里仁洞 - 市桥汽车站 (13站)<br>回程：市桥汽车站 - 里仁洞 - 塘步西 - 长腰岭 - 新和 - 上水(广州市老人院) - 太平镇政府 - 太平开发区 - 夏湾拿花园 - 神岗镇政府 - 逸泉山庄 - 白田岗 - 从化汽车站 (13站)<br>广州从化汽车站－番禺市桥汽车站备注信息：<br>每20-30分钟一班</p>
-<p>广州从化汽车站－森林公园</p>
-<p>从化线路 从化汽车站 06:20—18:10 森林公园 07:20—19:10 分段收费，全程8元 顺途公汽<br>去程：从化汽车站 - 城建学院 - 江浦村委 - 凤院路口 - 沙塱村 - 江村 - 九里步工业区 - 宣星路口 - 云台山 - 温泉镇政府 - 牛步迳 - 温泉中队 - 中山大学南方学院 - 桥栏 - 卫东 - 黄围[良口] - 米埔 - 高沙 - 热水 - 文轩苑 - 碧水湾 - 六三市 - 良口车站 - 黄竹塱 - 森林公园 (25站)<br>回程：森林公园 - 黄竹塱 - 良口车站 - 六三市 - 碧水湾 - 文轩苑 - 热水 - 高沙 - 米埔 - 黄围[良口] - 卫东 - 桥栏 - 中山大学南方学院 - 温泉中队 - 牛步迳 - 温泉镇政府 - 云台山 - 宣星路口 - 九里步工业区 - 江村 - 沙塱村 - 凤院路口 - 光导纤维厂 - 大江路口 - 河东综合市场 - 河东广场 - 河东市场 - 七星路口[从化] - 从化汽车站 (29站)<br>广州从化汽车站－森林公园备注信息：<br>每20-30分钟一班</p>
-<p>广州二汽新塘客运站－从化汽车站<br>[上行]<br>二汽新塘客运站 → 港口大道中 → 星之岛客运站 → 凤凰市场 → 长岗村[新塘] → 岗丰村 → 永和汽车站 → 塔岗村 → 公安村 → 叶岭村 → 集丰村 → 九和村 → 中新医院 → 中新客运站 → 康大路口 → 华师康大学院 → 九佛医院 → 新和 → 上水(广州市老人院) → 太平镇政府 → 太平开发区 → 夏湾拿花园 → 神岗镇政府 → 逸泉山庄 → 白田岗 → 从化汽车站(总站) (共26站)</p>
-<p>[下行]<br>从化汽车站(总站) → 白田岗 → 逸泉山庄 → 神岗镇政府 → 夏湾拿花园 → 太平开发区 → 太平镇政府 → 上水(广州市老人院) → 新和 → 九佛医院 → 华师康大学院 → 康大路口 → 中新客运站 → 中新医院 → 九和村 → 集丰村 → 叶岭村→ 公安村 → 塔岗村 → 永和汽车站 → 岗丰村 → 长岗村[新塘] → 凤凰市场 → 星之岛客运站 → 港口大道中 → 二汽新塘客运站 (共26站)</p>
-<p>增城线路 分段收费，全程18元 广州市运增城分公司 二汽新塘客运站 05:45—19:00 从化汽车站 05:45—19:00<br>每10-15分钟一班</p>
-<!-- JiaThis Button BEGIN -->
-<p><script type="text/javascript"><br>var jiathis_config = {data_track_clickback:’true’};<br></script></p>
-<p><script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=1997624" charset="utf-8"></script><br><!-- JiaThis Button END --></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/广从/">广从</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/杂谈/">杂谈</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-制作移动U盘系统" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/12/制作移动U盘系统/" class="article-date">
-  	<time datetime="2014-12-12T03:20:10.000Z" itemprop="datePublished">2014-12-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/12/制作移动U盘系统/">制作移动U盘系统</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>U盘?我没有U盘啊,内存卡可不可以,答案是可以的.<br>由于Ubuntu能用wubi方法安装,所以本文以Linuxmint17 为例.</p>
-<p>先把U盘格式化为<code>FAT32</code>(怎么知道我的是不是FAT32?计算机-找到磁盘-右键-属性.很多默认都是32的,有的老爷卡才是FAT16,不会有NTFS的吧,真有?格式化吧)。然后下载一个制作Linux的U盘启动盘的小工具 <code>Universal USB Installer</code> <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/" target="_blank" rel="external">戳我下载哦</a>,什么下载不了?我是不会教你<code>番羽</code> <code>土啬</code>下载的,根据国家法律,部分内容没有显示……..</p>
-<p>这是个绿色版的小软件，无需安装，双击运行即可。制作U盘启动盘的过程也很简单，跟着一步步往前即可。<br>1.第一个框，选择Linuxmint17<br><img src="http://ww4.sinaimg.cn/large/005yyi5Jjw1en6tbiia1qj305z0c63z7.jpg" alt=""></p>
-<p>2.第二个框，点Browse，选择已下载的ISO镜像；<code>Browse to your linuxmint*.iso  --&gt;</code></p>
-<p>3.第三个框，选择你的U盘。A.B.C.D.E.F.G具体那是个盘,win+E打开你的电脑就知道了,系统也会默认检测的.</p>
-<p>4.其他不用管了,点Create.</p>
-<p><img src="http://tc.acerw.com/di/XIHD/BaiduShurufa_2014-12-11_23-44-27.jpg" alt=""><br>然后<br><img src="http://tc.acerw.com/di/J97J/BaiduShurufa_2014-12-11_23-45-9.jpg" alt=""><br>再然后<br><img src="http://tc.acerw.com/di/TQ15/BaiduShurufa_2014-12-11_23-45-49.jpg" alt=""></p>
-<hr>
-<p>到这里就完成全部安装了,把你的U盘查到别的电脑(自己电脑也行,重启U盘启动就可以了)去试试吧,开机按U盘启动就可以进入系统了.</p>
-<p>是不是很讨厌那些写教程的人啊,总是在自己不懂的步骤就不配图,其实我们也是有苦衷的(谁没啊,我还有委屈呢@_@).<br>第一:我们的 空间有限,不宜放大量的图.<br>    A:傻蛋,你不会用图床啊….<br>第二:图床在弄外链的时候很费时<br>    A:#!%&amp;^*</p>
-<p>因为我们每个人的水平都不一样,有的人懂这个有的人懂那个,闻道有先后,术业有专攻.不会炒菜的裁缝不是好司机.我不知道你只会<code>右键-打开</code>,而不懂<code>双击</code>.  </p>
-<hr>
-<p> 我会做得更好.谢谢支持.<code>自由</code> <code>共享</code>是我的信条.转载请注明原出处<code>cmkd.net</code>.</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/U盘系统/">U盘系统</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/教程/">教程</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-冬天" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/10/冬天/" class="article-date">
-  	<time datetime="2014-12-10T10:35:19.000Z" itemprop="datePublished">2014-12-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/10/冬天/">北方与南方的冬天...</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="冬天来了,在南方的北方孩子">冬天来了,在南方的北方孩子</h4><p>大家纷纷用他们所能想到的词汇形容那些年你不知道的南方的冷！快来烤着暖气感受一下吧~</p>
-<p> 1.我要提醒东北的战友们。冬天没事儿别去南方！我求你们别去！冷死了！别以为你是个东北人就抗冻！离开暖气你啥都不是！！我在安徽，零上5℃都冻出了眼泪！！！室内外是一样的！一样的！！南方人都是神啊卧槽！！怎么抵挡那种可怕的温度的！！我在东北零下30℃一条棉裤hold住，到了南方两条都没用……</p>
-<p> 2.我们南方人冬天保暖基本靠抖</p>
-<p> 3.南方人教你如何在0℃和40℃同样穿一条裤子</p>
-<p> 4.南方人太扛了！在南昌上学的第一年，遇到了20年不遇的“大雪”，劳资在被窝里冻成傻逼了，一群南方人在外面敲锣打鼓，室友癫狂地掀开我的被子，鸡冻的喊“别睡了！雪！你看是雪啊！”当时森森的被颠覆了世界观…</p>
-<p> 5.北方是干冷，是物理攻击，多穿一点就行了；南方是湿冷，是魔法攻击，穿再多都没用。</p>
-<p> 6.胡说，谁tm说室内外一样冷了？明明室内比室外还冷好么！！室外至少能蹭着点儿阳光好么！！</p>
-<p> 7.我是来自北方的狼，在南方我冻成了一条狗</p>
-<p> 8.广东更爽，三天带你领略春夏秋冬</p>
-<p> 9.生在南方的我小时候也是天真，冬天冻成狗的时候自我安慰说想想人家北方零下几十度呢更可怜！后来发现我错了，错的离谱！</p>
-<p> 10.哎，想当年我还是个无知而天真的东北小少女，大学前妈妈告诉我南方没暖气，很暖和，我就只带了一件大衣，开心地来到了杭州，然后，第一个冬天我分分钟学会了怎么在南方做人…</p>
-<p> 11.我的超有钱前男友是上海人，去年的时候说要把我带回去，然后我们就分手了，我告诉他我不去，因为上海没有暖气……这是一个真实的故事！虽然他很有钱，但我不！后！悔！</p>
-<p> 12.东北人在南方……确实受不了…而且最惨的是还要默默忍受身边人鄙视的眼神…东北人还怕冷…鄙视你…</p>
-<p> 13.你们不会知道南方人冬天上课把手压在屁股下面压到扁的心酸…</p>
-<p> 14.这时感觉我国果然地大物博，看别的小点的国家的天气预报，明天全国下雨，零下5度。完。</p>
-<p> 15.你们有没有想过没有暖气也不包邮的第三地区的感受！？夏天热的要爆炸，冬天抖得像条狗，北方冬天靠暖气，南方简直就是在靠一身正气啊！惨哭了，只能赞个安慰自己了~</p>
-<hr>
-<p> <strong>本文来源于互联网,如有侵犯你的权益,请联系博主.冬天来了,注意防寒保暖哦!!!</strong></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/搞笑/">搞笑</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/幽默/">幽默</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-exit(0)与exit(1)有什么区别" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/07/exit(0)与exit(1)有什么区别/" class="article-date">
-  	<time datetime="2014-12-07T03:09:57.000Z" itemprop="datePublished">2014-12-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/07/exit(0)与exit(1)有什么区别/">exit(0)与exit(1)有什么区别?</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>周五在做实验的时候,突然用到void exit(int status);但是却不知道()填1和0的 区别,因此Google了一下,现在总结下来,当作读书笔记吧.<br>    exit(1)是异常退出,比如你的代码在出现不应该出现的分枝,要求终止程序的时候就用exit(1)..这个1是返回给操作系统的。<br>    exit(0)是正常退出,就是你认为代码一切正常的时候的退出.<br>    exit(x)（x不为0）都表示异常退出<br>    所在头文件：<code>stdlib.h</code></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
-	</div>
-
-
+        <p class="article-more-link">
+          <a  href="/2015/01/06/mobilephone/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -996,7 +456,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
